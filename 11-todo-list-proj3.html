@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>loops</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(2, 31, 62);
+            color: white;
+        }
+
+        h1 {
+            color: white;
+            background-color: rgb(7, 123, 255);
+            padding: 10px 45px;
+            border-radius: 570px;
+
+
+        }
+
+        .js-input {
+            padding: 5px 7px;
+            margin: 2px;
+            
+        }
+
+        .js-date {
+            padding: 5px 7px;
+            margin: 2px;
+        }
+
+
+        
+
+        .js-button {
+            color: black;
+            background-color: rgb(17, 249, 0);
+            padding: 7px 30px;
+            border-radius: 7px;
+            font-weight: 900;
+            margin-left: 20px;
+            margin-top: 7px;
+            cursor: pointer;
+            font-size: small;
+
+        }
+
+        footer {
+
+            background-color: rgb(28, 104, 255);
+            color: black;
+            padding: 5px 20px;
+            border-radius: 50px;
+            margin-bottom: 0px;
+            margin-top: 150px;
+            font-weight: bold;
+        }
+
+        .js-delete {
+            color: black;
+            background-color: rgb(255, 19, 19);
+            font-weight: 900;
+            cursor : pointer;
+            padding: 5px;
+            border-color: rgb(0, 0, 0);
+            border-width: 4px;
+        }
+
+        .js-div {
+            display: grid;
+            grid-template-columns: horizontal;
+            margin: 10px;
+            row-gap: 7px;
+            background-color: rgb(16, 137, 237);
+            border-radius: 7px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: black;
+            font-size: 17px;
+            font-weight:600;
+        }
+/*
+        .js-div2 {
+            display: grid;
+            grid-template-columns: 80px 70px 70px ;
+            margin: 3px;
+            column-gap: 3px;
+            margin-bottom: 7px;
+
+        }
+            */
+
+        .css-task {
+            padding: 7px 7px;
+            margin: px;
+     
+            
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <h1> TO DO LIST</h1>
+
+    <div class="js-div2">
+
+    <input class="js-input" onkeydown="
+        if (event.key === 'Enter'){
+            addtask();
+        }
+    " placeholder="place your task here">
+
+    <input type="date" class="js-date" >
+
+    <br>
+
+    <button class="js-button" onclick="
+        addtask();
+    ">ADD TASK</button>
+
+    </div>
+
+
+
+    <div class="js-div"></div>
+
+
+    <script>
+
+        const myArray = [];
+
+        function addtask() {
+
+
+            const input1 = document.querySelector('.js-input');
+            const input2 = input1.value
+
+
+
+            const input3 = document.querySelector('.js-date');
+            const input4 = input3.value
+
+
+            myArray.push({
+                task: input2,
+                date: input4
+            });
+
+            console.log(myArray);
+
+            input1.value = '';
+            input3.value = '';
+
+
+
+            render();
+
+        }
+
+
+        function render() {
+
+            let todolist = '';
+
+            for (let i = 0; i < myArray.length; i++) {
+
+                const { task, date } = myArray[i];
+
+                const html =
+                    ` <div class="css-task">${task}</div> 
+                      <div class="css-task">${date}</div>
+
+                        <button onclick= "
+                            myArray.splice(${i},1);
+                            render();
+                        " class = "js-delete">DELETE</button>
+
+                    `;
+
+                todolist += html
+
+            }
+
+            document.querySelector('.js-div').innerHTML = todolist
+        }
+
+
+
+
+
+
+    </script>
+
+    <footer>
+        by: Ram Bhagat Soni
+        <br>
+        All rights reserved
+        <br>
+        23-June-2025
+
+
+    </footer>
+
+</body>
+
+</html>
